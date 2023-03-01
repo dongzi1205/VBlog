@@ -11,7 +11,7 @@ const configuration = {
         backgroundColorRight: "",
         audioUrl: "",
         mini: false,
-        audioAutoPlay:false,
+        audioAutoPlay: true,
         webSites:[]
     },
 

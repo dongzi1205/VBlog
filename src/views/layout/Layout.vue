@@ -55,10 +55,14 @@
                         </el-row>
 
                         <audio ref="music" loop autoplay v-if="audioAutoPlay">
-                            <source :src="audioUrl" type="audio/mpeg">
+                            <!-- <source :src="require('@/assets/mp3/月亮之上 自由飞翔 雷鬼舞曲版 - 凤凰传奇.mp3')" type="audio/mpeg"> -->
+                            <source :src="require('@/assets/mp3/月亮之上 自由飞翔 雷鬼舞曲版 - 凤凰传奇.mp3')" type="audio/mpeg">
                         </audio>
-                        <audio ref="music" loop v-else>
-                            <source :src="audioUrl" type="audio/mpeg">
+                        <audio ref="music" loop autoplay v-else>
+                            <!-- <source :src="require('@/assets/mp3/月亮之上 自由飞翔 雷鬼舞曲版 - 凤凰传奇.mp3')" type="audio/mpeg"> -->
+                            <!-- Critical dependency: the request of a dependency is an expression,  require不支持直接传入变量，需要 `${audioUrl}`-->
+                            <source :src="require('@/assets/mp3/月亮之上 自由飞翔 雷鬼舞曲版 - 凤凰传奇.mp3')" type="audio/mpeg">
+                            <!-- <source :src="audioUrl"> -->
                         </audio>
                     </el-col>
                     <el-col :span="4" style="text-align: right;">
@@ -108,6 +112,7 @@
     import Sidebar from './components/Sidebar'
     import AppMain from './components/AppMain'
     import Foot from './components/Foot'
+
     export default {
         components: {
             Sidebar,
@@ -128,7 +133,8 @@
                 topbar: {
                     active: "",
                 },
-                randomIcon: []
+                randomIcon: [],
+                // audioUrl: require('@/assets/mp3/月亮之上 自由飞翔 雷鬼舞曲版 - 凤凰传奇.mp3')
             }
         },
         computed: {
@@ -144,7 +150,7 @@
                 'useBackgroundImage',
                 'backgroundColorLeft',
                 'backgroundColorRight',
-                'audioUrl',
+                // 'audioUrl',
                 'mini',
                 'followersTotal',
                 'followingTotal',
@@ -173,11 +179,50 @@
                 temp["size"] = this.$util.randomInt(20, 40)
                 this.randomIcon.push(temp)
             }
+
+            // setTimeout(() => {
+            //     // this.getAudioUrl()
+
+            //     // 检查是否播放完毕
+            //     let music = this.$refs['music']
+            //     if (music) {
+            //         setInterval(() => {
+            //             console.log('music.ended:', music.ended)
+            //             if (music.ended) {
+            //                 // 播放完毕
+            //                 let arr = [
+            //                     require('@/assets/mp3/康定情缘 - 凤凰传奇.mp3'),
+            //                     require('@/assets/mp3/奢香夫人 - 凤凰传奇.mp3'),
+            //                     require('@/assets/mp3/康定情缘 - 凤凰传奇.mp3'),
+            //                     require('@/assets/mp3/月亮之上 自由飞翔 雷鬼舞曲版 - 凤凰传奇.mp3'),
+            //                     require('@/assets/mp3/策马奔腾 桑巴舞曲版 - 凤凰传奇.mp3'),
+            //                     require('@/assets/mp3/绿旋风 - 凤凰传奇.mp3'),
+            //                 ]
+            //                 let rand = Math.random() * 6
+            //                 console.log(arr[Number(rand.toFixed())])
+            //                 this.audioUrl =  arr[Number(rand.toFixed())]
+            //             }
+            //         }, 1000)
+            //     }
+
+            // }, 1500)
         },
         created() {
 
         },
         methods: {
+            // 查询音乐播放链接
+            getAudioUrl() {
+                // 奢香夫人
+                // window.postMessage({'type': 'getMusicUrl', 'musicId': 1877017100}, '*')
+
+                // window.addEventListener('message', (e) => {
+                //     console.log('GIO:', e.data)
+                //     if (e && e.data && e.data.type === 'getMusicUrlResult') {
+                //         this.audioUrl = e.data.url
+                //     }
+                // })
+            },
             selectTopbar(index) {
                 //取消菜单选中状态
                 this.topbar.active = this.topbar.active == "" ? " " : ""
