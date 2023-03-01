@@ -12,11 +12,16 @@ service.interceptors.request.use(
     config => {
         let token = store.state.token.token
         if (token) {
-            let sp = "?"
-            if (config.url.indexOf("?") >= 0) {
-                sp = "&"
+            // let sp = "?"
+            // if (config.url.indexOf("?") >= 0) {
+            //     sp = "&"
+            // }
+            // 取消直接通过access_token的校验方式
+            // config.url = config.url + sp + "access_token=" + token
+            // 使用Authorization的授权
+            config.headers = {
+                'Authorization': 'token ' + token
             }
-            config.url = config.url + sp + "access_token=" + token
         }
         return config
     },
