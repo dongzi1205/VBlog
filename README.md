@@ -3,6 +3,20 @@
 ![](https://img.shields.io/github/languages/top/github-laziji/VBlog.svg?style=flat)
 ![](https://img.shields.io/github/stars/gitHub-laziji/VBlog.svg?style=social)
 
+## 运行
+  拉取项目源码后：
+    npm install
+    npm run dev
+    npm run build
+  项目部署到：GitHub用户名.github.io 仓库
+  部署方式
+    npm run build打包之后的dist目录中文件上传到GitHub用户名.github.io 仓库。
+    ![.github.io目录结构](screenshots/io.jpg)
+
+    -- dist
+      -- static
+      -- index.html
+
 
 ## [English Documents](README-EN.md)
 
